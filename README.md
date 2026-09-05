@@ -24,7 +24,7 @@ This repo uses uv for Python environment and dependency management (Python 3.12)
 
 Install uv (see tools/uv-guide/README.md for details), then clone the repo:
 bash
-   git clone https://github.com/daveebbelaar/ai-cookbook.git
+   git clone https://github.com/suman9863/ai-cookbook.git
    cd ai-cookbook
 Set your API key(s). Copy the example env file and fill in your key(s):
 bash
