@@ -66,14 +66,12 @@ Main folders:
 | `roadmaps/` | Suggested learning roadmaps for becoming an AI engineer |
 
 ## How to Run
-1. **Install uv** (see `tools/uv-guide/README.md` for details), then clone the repo:
-   ```bash
-   git clone https://github.com/daveebbelaar/ai-cookbook.git
+1. **Install uv**
+   git clone https://github.com/suman9863/ai-cookbook.git
    cd ai-cookbook
    ```
 
-2. **Set your API key(s).** Copy the example env file and fill in your key(s):
-   ```bash
+2. **Set your API key(s).** 
    cp .env.example .env
    # then edit .env and add your OPENAI_API_KEY (and any other keys a module needs)
    ```
@@ -89,8 +87,6 @@ Main folders:
    ```bash
    uv run 1-introduction/some_script.py
    ```
-
-Check the `README.md` inside each module for any extra setup (e.g. `knowledge/mem0` and `mcp/crash-course` also use `docker compose up -d` to spin up local services before running examples).
 
 ## Models and Tools Used
 
