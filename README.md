@@ -18,17 +18,6 @@ mcp/	An MCP crash course (server setup, OpenAI integration, Docker, lifecycle) a
 context/web	Giving agents web access — page fetching, web search, and search agents
 tools/uv-guide	Guide to using uv as the Python package/project manager for this repo
 roadmaps/	Suggested learning roadmaps for becoming an AI engineer
-How to Run
-
-This repo uses uv for Python environment and dependency management (Python 3.12).
-
-Install uv (see tools/uv-guide/README.md for details), then clone the repo:
-bash
-   git clone https://github.com/suman9863/ai-cookbook.git
-   cd ai-cookbook
-Set your API key(s). Copy the example env file and fill in your key(s):
-bash
-   cp .env.example .env
    # then edit .env and add your OPENAI_API_KEY (and any other keys a module needs)
 Go into the module you want to run — each one is self-contained with its own requirements.txt:
 bash
@@ -77,9 +66,6 @@ Main folders:
 | `roadmaps/` | Suggested learning roadmaps for becoming an AI engineer |
 
 ## How to Run
-
-This repo uses **[uv](https://docs.astral.sh/uv/)** for Python environment and dependency management (Python 3.12).
-
 1. **Install uv** (see `tools/uv-guide/README.md` for details), then clone the repo:
    ```bash
    git clone https://github.com/daveebbelaar/ai-cookbook.git
