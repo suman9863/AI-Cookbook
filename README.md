@@ -1,116 +1,122 @@
+AI Cookbook
+About the Project
+
+AI Cookbook is building for real-world AI systems in Python. Instead of one monolithic app, it is organized as a set of independent modules that each demonstrate a specific AI engineering concept — from basic LLM calls to agents, retrieval-augmented generation (RAG), memory, and the Model Context Protocol (MCP). Each module has its own scripts and dependencies, so you can drop any single example straight into your own project.
+
+Main folders:
+
+Folder	What it covers
+agents/	Building agents from scratch — from a single augmented LLM call up to prompt chains, tool-calling agents, an agent harness, and multi-agent setups
+patterns/workflows	Core LLM workflow patterns (chaining, routing, parallelization, etc.)
+models/openai	OpenAI API basics — endpoints, Assistants, structured outputs, the Responses API, agents, GPT-OSS, video, web, and human-in-the-loop
+models/whisper	Audio transcription using OpenAI's Whisper
+knowledge/agentic-rag	Building a RAG agent with custom tools, streaming, and structured output
+knowledge/hybrid-retrieval	Combining keyword (BM25) search with vector embeddings, reciprocal rank fusion, and reranking
+knowledge/docling	Document extraction, chunking, embedding, search, and chat over documents with Docling
+knowledge/mem0	Long-term memory for AI agents using Mem0 (cloud and self-hosted)
+mcp/	An MCP crash course (server setup, OpenAI integration, Docker, lifecycle) and example MCP servers
+context/web	Giving agents web access — page fetching, web search, and search agents
+tools/uv-guide	Guide to using uv as the Python package/project manager for this repo
+roadmaps/	Suggested learning roadmaps for becoming an AI engineer
+How to Run
+
+This repo uses uv for Python environment and dependency management (Python 3.12).
+
+Install uv (see tools/uv-guide/README.md for details), then clone the repo:
+bash
+   git clone https://github.com/daveebbelaar/ai-cookbook.git
+   cd ai-cookbook
+Set your API key(s). Copy the example env file and fill in your key(s):
+bash
+   cp .env.example .env
+   # then edit .env and add your OPENAI_API_KEY (and any other keys a module needs)
+Go into the module you want to run — each one is self-contained with its own requirements.txt:
+bash
+   cd models/openai        # example: pick any module folder
+   uv venv
+   uv pip install -r requirements.txt
+Run a script:
+bash
+   uv run 1-introduction/some_script.py
+
+Check the README.md inside each module for any extra setup (e.g. knowledge/mem0 and mcp/crash-course also use docker compose up -d to spin up local services before running examples).
+
+Models and Tools Used
+Purpose	Model / Tool
+Chat / reasoning LLM	OpenAI GPT family — gpt-4, gpt-4o, gpt-4o-mini, gpt-4.1, gpt-4.1-nano, gpt-5, gpt-5-mini, gpt-5-nano, gpt-3.5-turbo
+Open-weight LLM	gpt-oss (via OpenAI's open-weight models example)
+Speech-to-text	OpenAI Whisper
+Text embeddings	OpenAI text-embedding-3-small / text-embedding-3-large
+Keyword search	BM25 (used in hybrid retrieval)
+Reranking	Cross-encoder / Cohere Rerank (rerank-v4.0-fast)
+Document parsing	Docling
+Long-term agent memory	Mem0 (cloud and open-source)
+Agent-tool interoperability	Model Context Protocol (MCP)
+Package/environment manager	uv
 # AI Cookbook
 
-Practical, copy/paste-ready examples and tutorials for building AI systems in Python — agents, RAG/knowledge retrieval, MCP servers, LLM workflow patterns, and hands-on guides for the OpenAI and Whisper APIs.
+## About the Project
 
-Every folder is self-contained: read its `README.md`, install its `requirements.txt`, and run the code. No framework lock-in, no hidden magic — just patterns you can lift straight into your own projects.
+AI Cookbook is a collection of standalone, copy/paste-ready examples and tutorials for building real-world AI systems in Python. Instead of one monolithic app, it is organized as a set of independent modules that each demonstrate a specific AI engineering concept — from basic LLM calls to agents, retrieval-augmented generation (RAG), memory, and the Model Context Protocol (MCP). Each module has its own scripts and dependencies, so you can drop any single example straight into your own project.
 
-## Table of Contents
+Main folders:
 
-- [Agents](#agents)
-- [Patterns](#patterns)
-- [Knowledge](#knowledge)
-- [MCP](#mcp)
-- [Models](#models)
-- [Context](#context)
-- [Tools](#tools)
-- [Roadmaps](#roadmaps)
-- [Getting Started](#getting-started)
-- [About](#about)
-
-## Agents
-
-| Project | Description |
+| Folder | What it covers |
 |---|---|
-| [`agents/agent-complexity`](agents/agent-complexity) | The 5 levels of AI agent complexity, from an augmented LLM call up to a full agent harness, with runnable code for each level. |
-| [`agents/building-blocks`](agents/building-blocks) | The 7 foundational building blocks used to compose real, production AI agents — without reaching for a framework. |
+| `agents/` | Building agents from scratch — from a single augmented LLM call up to prompt chains, tool-calling agents, an agent harness, and multi-agent setups |
+| `patterns/workflows` | Core LLM workflow patterns (chaining, routing, parallelization, etc.) |
+| `models/openai` | OpenAI API basics — endpoints, Assistants, structured outputs, the Responses API, agents, GPT-OSS, video, web, and human-in-the-loop |
+| `models/whisper` | Audio transcription using OpenAI's Whisper |
+| `knowledge/agentic-rag` | Building a RAG agent with custom tools, streaming, and structured output |
+| `knowledge/hybrid-retrieval` | Combining keyword (BM25) search with vector embeddings, reciprocal rank fusion, and reranking |
+| `knowledge/docling` | Document extraction, chunking, embedding, search, and chat over documents with Docling |
+| `knowledge/mem0` | Long-term memory for AI agents using Mem0 (cloud and self-hosted) |
+| `mcp/` | An MCP crash course (server setup, OpenAI integration, Docker, lifecycle) and example MCP servers |
+| `context/web` | Giving agents web access — page fetching, web search, and search agents |
+| `tools/uv-guide` | Guide to using `uv` as the Python package/project manager for this repo |
+| `roadmaps/` | Suggested learning roadmaps for becoming an AI engineer |
 
-## Patterns
+## How to Run
 
-| Project | Description |
+This repo uses **[uv](https://docs.astral.sh/uv/)** for Python environment and dependency management (Python 3.12).
+
+1. **Install uv** (see `tools/uv-guide/README.md` for details), then clone the repo:
+   ```bash
+   git clone https://github.com/daveebbelaar/ai-cookbook.git
+   cd ai-cookbook
+   ```
+
+2. **Set your API key(s).** Copy the example env file and fill in your key(s):
+   ```bash
+   cp .env.example .env
+   # then edit .env and add your OPENAI_API_KEY (and any other keys a module needs)
+   ```
+
+3. **Go into the module you want to run** — each one is self-contained with its own `requirements.txt`:
+   ```bash
+   cd models/openai        # example: pick any module folder
+   uv venv
+   uv pip install -r requirements.txt
+   ```
+
+4. **Run a script:**
+   ```bash
+   uv run 1-introduction/some_script.py
+   ```
+
+Check the `README.md` inside each module for any extra setup (e.g. `knowledge/mem0` and `mcp/crash-course` also use `docker compose up -d` to spin up local services before running examples).
+
+## Models and Tools Used
+
+| Purpose | Model / Tool |
 |---|---|
-| [`patterns/workflows`](patterns/workflows) | Composable patterns for building effective LLM workflows in pure Python, based on Anthropic's "Building Effective Agents." |
-
-## Knowledge
-
-| Project | Description |
-|---|---|
-| [`knowledge/agentic-rag`](knowledge/agentic-rag) | Building Agentic RAG from scratch in pure Python — letting the model search and read source files directly instead of relying on a vector database. |
-| [`knowledge/hybrid-retrieval`](knowledge/hybrid-retrieval) | A production-grade retrieval stack built from scratch: BM25 + dense embeddings + Reciprocal Rank Fusion + cross-encoder reranking, benchmarked on FiQA-2018. |
-| [`knowledge/docling`](knowledge/docling) | A knowledge-extraction pipeline built with [Docling](https://github.com/DS4SD/docling) for parsing and chunking documents for RAG. |
-| [`knowledge/mem0`](knowledge/mem0) | Adding long-term memory to AI agents with [mem0](https://github.com/mem0ai/mem0), including OSS and cloud setups. |
-
-## MCP
-
-| Project | Description |
-|---|---|
-| [`mcp/crash-course`](mcp/crash-course) | A full crash course on the Model Context Protocol — servers, clients, prompts, resources, tools, Docker deployment, and lifecycle management. |
-| [`mcp/servers/youtube`](mcp/servers/youtube) | A minimal MCP server that fetches YouTube video transcripts, run with `uv` and connected to Claude Desktop or Claude Code. |
-
-## Models
-
-| Project | Description |
-|---|---|
-| [`models/openai`](models/openai) | A tour of the OpenAI API surface — endpoints, the Assistants API, structured outputs, the Responses API, agents, GPT-OSS, video, web, and human-in-the-loop patterns. |
-| [`models/whisper`](models/whisper) | Transcribing audio/video to text locally with OpenAI's open-source Whisper model. |
-
-## Context
-
-| Project | Description |
-|---|---|
-| [`context/web`](context/web) | Combining an internal knowledge base with live web search so agents can draw on multiple sources of context. |
-
-## Tools
-
-| Project | Description |
-|---|---|
-| [`tools/uv-guide`](tools/uv-guide) | Why and how to use [uv](https://docs.astral.sh/uv/), the Rust-based Python package manager, in place of pip/poetry/pyenv/virtualenv. |
-
-## Roadmaps
-
-| Guide | Description |
-|---|---|
-| [`roadmaps/ai-engineer-2026.md`](roadmaps/ai-engineer-2026.md) | A learning roadmap for becoming an AI engineer in 2026. |
-| [`roadmaps/ds-ml-to-ai-engineer-2026.md`](roadmaps/ds-ml-to-ai-engineer-2026.md) | A transition roadmap for data scientists/ML engineers moving into AI engineering. |
-
-## Getting Started
-
-**Prerequisites**
-- Python 3.12 (see `.python-version`)
-- [uv](https://docs.astral.sh/uv/getting-started/installation/) (recommended — see [`tools/uv-guide`](tools/uv-guide)) or pip
-- An OpenAI API key for examples that call the OpenAI API
-
-**Setup**
-
-```bash
-# Clone the repository
-git clone <this-repo-url>
-cd ai-cookbook
-
-# Copy the example environment file and add your keys
-cp .env.example .env
-
-# Move into any example folder and install its dependencies
-cd patterns/workflows
-uv pip install -r requirements.txt   # or: pip install -r requirements.txt
-```
-
-Each subfolder has its own `README.md` with the specifics for that example — start there.
-
-## About
-
-I'm Dave, an AI engineer and founder of Datalumina. I run an AI development company, and on my [YouTube channel](https://www.youtube.com/@daveebbelaar?sub_confirmation=1), I share practical tutorials that teach you how to build AI systems that actually work in the real world.
-
-### My other work
-
-Beyond this cookbook, I've created a few other resources that might help you depending on where you are in your career.
-
-If you're completely new to AI and just getting started with Python, I have a [free five-hour course](https://youtu.be/ygXn5nV5qFc) that covers everything you need to know to build a solid foundation.
-
-If you're already comfortable with the basics and want to go deeper, I run a program where I teach developers [how to build and deploy end-to-end GenAI solutions](https://go.datalumina.com/CkIsMAK) using the same approach we use for our agency clients.
-
-And if you're a skilled developer or data professional looking to go independent, I can help you [land your first client](https://go.datalumina.com/MVWhVn9).
-
-## License
-
-MIT — see [LICENCE](LICENCE).
-#
+| Chat / reasoning LLM | OpenAI GPT family — `gpt-4`, `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-nano`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-3.5-turbo` |
+| Open-weight LLM | `gpt-oss` (via OpenAI's open-weight models example) |
+| Speech-to-text | OpenAI **Whisper** |
+| Text embeddings | OpenAI `text-embedding-3-small` / `text-embedding-3-large` |
+| Keyword search | **BM25** (used in hybrid retrieval) |
+| Reranking | Cross-encoder / Cohere **Rerank** (`rerank-v4.0-fast`) |
+| Document parsing | **Docling** |
+| Long-term agent memory | **Mem0** (cloud and open-source) |
+| Agent-tool interoperability | **Model Context Protocol (MCP)** |
+| Package/environment manager | **uv** |
